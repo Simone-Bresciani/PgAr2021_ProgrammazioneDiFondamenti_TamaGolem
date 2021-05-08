@@ -39,4 +39,5 @@ public class Tamagolem {
     public void setEsausto(boolean esausto) {
         this.esausto = esausto;
     }
+
 }
