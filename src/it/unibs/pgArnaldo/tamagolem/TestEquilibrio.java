@@ -9,6 +9,7 @@ public class TestEquilibrio {
 
     public static void main(String[] args) {
 
+
         int[][] mat = new int[N][N];
         for(int i=0; i<N-2; i++){ //righe tranne l'ultima
             int caselle_positive=0;
@@ -65,5 +66,6 @@ public class TestEquilibrio {
             }
             System.out.print("\n");
         }System.out.print("\n");
+
     }
 }
