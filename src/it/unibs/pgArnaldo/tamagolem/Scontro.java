@@ -9,7 +9,7 @@ public class Scontro {
     private boolean conclusa;
 
     //costruttore
-    public Scontro ScontroInizio(Squadra squadra1, Squadra squadra2, boolean conclusa) {
+    public Scontro(Squadra squadra1, Squadra squadra2, boolean conclusa) {
         this.squadra1 = squadra1;
         this.squadra2 = squadra2;
         this.conclusa = conclusa;
@@ -48,5 +48,4 @@ public class Scontro {
     public void setConclusa(boolean conclusa) {
         this.conclusa = conclusa;
     }
-
 }
