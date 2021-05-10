@@ -2,10 +2,13 @@ package it.unibs.pgArnaldo.tamagolem;
 
 import java.util.Random;
 
+
 public class Equilibrio {
 
-    //COSTANTI
-    static final int N = 5;
+    //ATTRIBUTI
+    int [][] mat;
+    int vita;
+    int n;
 
     //METODO  EQUILIBRIO
     /**
@@ -21,30 +24,30 @@ public class Equilibrio {
      */
 
 
-    public static void main(String[] args) {
+    public Equilibrio(int n){
 
-        int[][] mat = new int[N][N];
+        this.mat = new int[n][n];
         Random rand = new Random();
         boolean invalido = false;
-        int Vita;
+        this.n = n;
 
         do {
             invalido = false;
 
             //inizializzazione matrice pulita
-            for(int a=0;a<N;a++){
-                for(int b=0;b<N;b++){
+            for(int a = 0; a< n; a++){
+                for(int b = 0; b< n; b++){
                     mat[a][b] = 0;
                 }
             }
 
-            for (int i = N - 1; i > 1; i--) {  //inizialmente i=4, sto scorrendo dall'ultima colonna fino alla seconda
+            for (int i = n - 1; i > 1; i--) {  //inizialmente i=4, sto scorrendo dall'ultima colonna fino alla seconda
                 int numeri_positivi_sulla_colonna = 0;
                 int numeri_negativi_sulla_colonna = 0;
                 int somma_numeri_colonna = 0;
 
                 int somma_numeri_riga_precedente = 0;
-                for (int s = 0; s < N; s++) {
+                for (int s = 0; s < n; s++) {
                     somma_numeri_riga_precedente += mat[i][s];
                 }
 
@@ -60,7 +63,7 @@ public class Equilibrio {
 
 
                 for (int j = i - 1; j > 1; j--) {  //scorro le caselle della colonna tranne l'ultima che sará la somma restante
-                    if (numeri_positivi_sulla_colonna < (N - 1) / 2 && numeri_negativi_sulla_colonna < (N - 1) / 2) {
+                    if (numeri_positivi_sulla_colonna < (n - 1) / 2 && numeri_negativi_sulla_colonna < (n - 1) / 2) {
                         if (rand.nextInt(2) == 1) {
                             mat[j - 1][i] = randomizzaPositivo();  //a caso estrarró un positivo o un negativo e lo inserisco nella posizione
                             numeri_positivi_sulla_colonna++;
@@ -68,7 +71,7 @@ public class Equilibrio {
                             mat[j - 1][i] = randomizzaNegativo();
                             numeri_negativi_sulla_colonna++;
                         }
-                    } else if(numeri_negativi_sulla_colonna >= (N - 1) / 2){
+                    } else if(numeri_negativi_sulla_colonna >= (n - 1) / 2){
                         mat[j - 1][i] = randomizzaPositivo();
                         numeri_positivi_sulla_colonna++;
                     }else {
@@ -84,13 +87,13 @@ public class Equilibrio {
 
             }
             //completo l'ultima casellina in alto a sinistra
-            for (int s = 0; s < N; s++) {
+            for (int s = 0; s < n; s++) {
                 mat[0][1] += mat[1][s];
             }
 
             //copio la metá matrice e la convalido
-            for (int a=0; a<N-1; a++){
-                for (int b=a+1; b<N; b++){
+            for (int a = 0; a< n -1; a++){
+                for (int b = a+1; b< n; b++){
                     if(mat[a][b]==0) invalido = true;
                     mat[b][a] = -mat[a][b];
                 }
@@ -100,8 +103,8 @@ public class Equilibrio {
         }while(invalido==true);
 
 
-        Vita = calcolaVita(mat, N);
-
+        vita = calcolaVita(mat, n);
+        /*
         //STAMPA
         for (int a=0; a<N; a++){
             for (int b=0; b<N; b++){
@@ -111,17 +114,19 @@ public class Equilibrio {
             System.out.print("\n");
         }System.out.print("\n");
         System.out.print("La vita é stata impostata a: ");
-        System.out.println(Vita);
+        System.out.println(vita);
+
+        */
     }
 
-    private static int calcolaVita(int [][] mat, int N) {
-        int Vita=1;
-        for(int a=0; a<N; a++){
-            for(int b=0; b<N; b++){
-                if(mat[a][b] > Vita) Vita = mat[a][b];
+    private static int calcolaVita(int [][] mat, int n) {
+        int vita = 1;
+        for(int a=0; a<n; a++){
+            for(int b=0; b<n; b++){
+                if(mat[a][b] > vita) vita = mat[a][b];
             }
         }
-        return Vita;
+        return vita;
     }
 
     private static int randomizzaPositivo() {
@@ -132,5 +137,19 @@ public class Equilibrio {
     private static int randomizzaNegativo() {
         Random rand = new Random();
         return -rand.nextInt(3)-1; //un numero cauale tra -1,-2,-3 (uso dei numeri piccoli per comoditá)
+    }
+
+    public int getVita(){
+        return this.vita;
+    }
+
+    public void stampaMatriceEquilibrio() {
+        for (int a=0; a<n; a++){
+            for (int b=0; b<n; b++){
+                if (mat[a][b] < 0) System.out.printf("[" + mat[a][b] + "]" + " ");
+                else System.out.printf("[ " + mat[a][b] + "]" + " ");
+            }
+            System.out.print("\n");
+        }System.out.print("\n");
     }
 }
