@@ -28,4 +28,12 @@ public class Corrispondenze
     public Map<Integer, String> getLista_corrispondenze() {
         return lista_corrispondenze;
     }
+
+    /**
+     * metodo che ritorna il nome della pietra, data la key inserita
+     * @param i rappresenta la key
+     * @return String nome della pietra
+     */
+    public String getNome(int i) { return lista_corrispondenze.get(i); }
+
 }

@@ -1,21 +1,23 @@
 package it.unibs.pgArnaldo.tamagolem;
 
+import java.util.ArrayList;
+
 public class Tamagolem {
 
     //attributi
-    private int[] pietre_utilizzate;
+    private ArrayList<String> pietre_utilizzate;
     private int vita;
     private boolean esausto;
 
     //costruttore
-    public Tamagolem(int[] pietre_utilizzate, int vita, boolean esausto) {
+    public Tamagolem(ArrayList<String> pietre_utilizzate, int vita, boolean esausto) {
         this.pietre_utilizzate = pietre_utilizzate;
         this.vita = vita;
         this.esausto = esausto;
     }
 
     //get
-    public int[] getPietre_utilizzate() {
+    public ArrayList<String> getPietre_utilizzate() {
         return pietre_utilizzate;
     }
 
@@ -28,9 +30,7 @@ public class Tamagolem {
     }
 
     //set
-    public void setPietre_utilizzate(int[] pietre_utilizzate) {
-        this.pietre_utilizzate = pietre_utilizzate;
-    }
+    public void setPietre_utilizzate(ArrayList<String> pietre_utilizzate) { this.pietre_utilizzate = pietre_utilizzate; }
 
     public void setVita(int vita) {
         this.vita = vita;

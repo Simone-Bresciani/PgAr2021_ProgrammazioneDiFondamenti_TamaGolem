@@ -48,4 +48,6 @@ public class Scontro {
     public void setConclusa(boolean conclusa) {
         this.conclusa = conclusa;
     }
+
+    public void lancia(){}
 }

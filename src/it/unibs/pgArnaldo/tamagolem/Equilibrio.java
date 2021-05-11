@@ -3,12 +3,12 @@ package it.unibs.pgArnaldo.tamagolem;
 import java.util.Random;
 
 
-public class Equilibrio {
-
+public class Equilibrio
+{
     //ATTRIBUTI
-    int [][] mat;
-    int vita;
-    int n;
+    private int [][] mat;
+    private int vita;
+    private int n;
 
     //METODO  EQUILIBRIO
     /**
@@ -100,26 +100,14 @@ public class Equilibrio {
             }
 
 
-        }while(invalido==true);
+        }while(invalido);
 
 
         vita = calcolaVita(mat, n);
-        /*
-        //STAMPA
-        for (int a=0; a<N; a++){
-            for (int b=0; b<N; b++){
-                if (mat[a][b] < 0) System.out.printf("[" + mat[a][b] + "]" + " ");
-                else System.out.printf("[ " + mat[a][b] + "]" + " ");
-            }
-            System.out.print("\n");
-        }System.out.print("\n");
-        System.out.print("La vita é stata impostata a: ");
-        System.out.println(vita);
 
-        */
     }
 
-    private static int calcolaVita(int [][] mat, int n) {
+    private int calcolaVita(int [][] mat, int n) {
         int vita = 1;
         for(int a=0; a<n; a++){
             for(int b=0; b<n; b++){
@@ -139,9 +127,10 @@ public class Equilibrio {
         return -rand.nextInt(3)-1; //un numero cauale tra -1,-2,-3 (uso dei numeri piccoli per comoditá)
     }
 
-    public int getVita(){
-        return this.vita;
+    public int getVita() {
+        return vita;
     }
+
 
     public void stampaMatriceEquilibrio() {
         for (int a=0; a<n; a++){
