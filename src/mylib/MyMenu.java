@@ -21,13 +21,19 @@ public class MyMenu
 	this.voci = voci;
   }
 
-  public int scegli ()
+  public int scegliConUscita ()
   {
-	stampaMenu();
+	stampaMenuConUscita();
 	return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, 0, voci.length);	 
   }
+
+    public int scegliSenzaUscita ()
+    {
+        stampaMenuSenzaUscita();
+        return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, 0, voci.length);
+    }
 		
-  public void stampaMenu ()
+  public void stampaMenuConUscita ()
   {
 	System.out.println(CORNICE);
 	System.out.println(titolo);
@@ -40,6 +46,18 @@ public class MyMenu
 	System.out.println(VOCE_USCITA);
     System.out.println();
   }
+
+    public void stampaMenuSenzaUscita ()
+    {
+        System.out.println(CORNICE);
+        System.out.println(titolo);
+        System.out.println(CORNICE);
+        for (int i=0; i<voci.length; i++)
+        {
+            System.out.println( (i+1) + "\t" + voci[i]);
+        }
+        System.out.println();
+    }
 		
 }
 

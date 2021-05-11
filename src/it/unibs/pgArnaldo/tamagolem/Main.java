@@ -15,7 +15,7 @@ public class Main {
             //creo il menu per mostrare i livelli di difficoltà
             MyMenu menu_difficolta = nuovoMenu("difficolta");
             //stampo il menu
-            menu_difficolta.stampaMenu();
+            menu_difficolta.stampaMenuSenzaUscita();
             //in base alla difficolta scelta, imposterò il nuemero della tipologia degli elementi disponibili
             int numero_elementi = calcolaElementi(InputDati.leggiIntero(Costanti.SCELTA_DIFFICOLTA));
             //in base al numero degli elementi genero l'equilibrio
