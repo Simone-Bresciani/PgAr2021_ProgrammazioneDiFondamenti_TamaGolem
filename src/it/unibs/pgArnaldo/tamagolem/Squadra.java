@@ -29,60 +29,45 @@ public class Squadra
         return lista_tamagolem;
     }
 
+    /**
+     * Metodo per comunicare la lista pietre in modo più leggibile per l'utente
+     * Esempio di funzionamento:
+     *     al posto di comunicare [acqua, acqua, terra, terra] comunica [acqua(x2), terra(x2)]
+     * @param numero_elementi ovvero il numero delle tipologie di pietre
+     * @return nomi_pietre è una stringa che comunica le pietre totali a disposizione
+     */
     public String getLista_pietre(int numero_elementi) {
+        //sarà la stringa che ritornerà con le pietre disponibili
         String nomi_pietre = new String();
+        //in testa alla stringa metterò l'apertura dello zaino
         nomi_pietre += "ZAINO: [ ";
+        //ciclo per la lunghezza dell'arraylist, senza l'ultima posizione
+        //altrimenti darebbe errore a confrontare l'ultimo elemento dell'array con l'elemento dopo
 
-        /*
-        String elemento_corrente = lista_pietre.get(0);
-        int i=0;
-        int k=0;
-        int scambiato  = 0;
-        do{
-            if(scambiato == 1){
-                nomi_pietre += lista_pietre.get(i-1) + " x" + k;
-                k = 0;
-                scambiato = 0;
-            }
-            if(lista_pietre.get(i).equals(elemento_corrente)){
-                k++;
-
-            }else {
-                elemento_corrente = lista_pietre.get(i);
-                scambiato=1;
-            }
-            i++;
-        }while(i<lista_pietre.size());
-        nomi_pietre += " ]";
-*/
-       // /*
         for(int j=0; j< lista_pietre.size()-1; j++) {
+
             if(!lista_pietre.get(j).equals(lista_pietre.get(j+1))) {
                 int k = 0;
                 for (int i = 0; i < lista_pietre.size(); i++) {
                     if (lista_pietre.get(i).equals(lista_pietre.get(j))) k++;
                 }
                 nomi_pietre += lista_pietre.get(j) + "(x" + k + ") ";
-
             }
         }
+
         int f=0;
         for (int i = 0; i < lista_pietre.size(); i++) {
             if (lista_pietre.get(i).equals(lista_pietre.get(lista_pietre.size()-1))) f++;
         }
         nomi_pietre += lista_pietre.get(lista_pietre.size()-1) + "(x" + f + ") ";
-        nomi_pietre += "]";
-      //  */
 
+        nomi_pietre += "]";
         return nomi_pietre;
     }
 
-
-    //togli pietre
-
     /**
      *
-     * @param tipo_pietra
+     * @param tipo_pietra ovvero il nome che la rappresenta
      * @return ritorna true se la pietra e' stata tolta correttamente
      */
     public boolean togliPietre(String tipo_pietra){
@@ -92,7 +77,10 @@ public class Squadra
         }else return false;
     }
 
-    //togli tamagolem
+    /**
+     *
+     * @param tamagolem_da_eliminare ovvero l'oggetto tamagolem
+     */
     public void togliTamagolem(Tamagolem tamagolem_da_eliminare){
         this.lista_tamagolem.remove(tamagolem_da_eliminare);
     }

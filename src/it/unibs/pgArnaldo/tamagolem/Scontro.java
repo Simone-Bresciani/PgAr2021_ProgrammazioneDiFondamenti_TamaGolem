@@ -8,7 +8,7 @@ public class Scontro {
     private Squadra vincitore;
     private boolean conclusa;
 
-    //costruttore
+    //costruttore (non passo il vincitore perchè verrà settato tramite il metodo setVincitore)
     public Scontro(Squadra squadra1, Squadra squadra2, boolean conclusa) {
         this.squadra1 = squadra1;
         this.squadra2 = squadra2;
@@ -49,5 +49,7 @@ public class Scontro {
         this.conclusa = conclusa;
     }
 
-    public void lancia(){}
+    public void lancia(Tamagolem tamgolem1, Tamagolem tamagolem2){
+
+    }
 }

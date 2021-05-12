@@ -43,8 +43,8 @@ public class Main {
 
             //assegnazione preliminare delle pietre per i primi 2 tamagolem
 
-                //System.out.println(Costanti.TURNO_1);
-                //InputDati.leggiStringa("...digita per continuare...\n");
+            //System.out.println(Costanti.TURNO_1);
+            //InputDati.leggiStringa("...digita per continuare...\n");
             System.out.printf(Costanti.GIOCATORE1 + Costanti.NUMERO_TAMAGOLEM + "\n\n", squadra1.getLista_tamagolem().size());
             System.out.printf(Costanti.GIOCATORE1 + Costanti.SCEGLI_PIETRE + "\n", numero_pietre_per_golem);
 
@@ -103,7 +103,7 @@ public class Main {
     }
 
     /**
-     *
+     * <h3>metodo per il calcolo del numero della tipologia di elementi di pietre disponibili, data la difficoltà scelta</h3>
      * @param difficolta_scelta range tra 1 e 4
      * @return il numero della tipoligia delle pietre disponibili in base alla difficoltà (tra 3 e 9)
      */
@@ -122,7 +122,7 @@ public class Main {
     }
 
     /**
-     * Metodo per la creazione dei vari menu
+     * <h3>Metodo per la creazione dei vari menu</h3>
      * @param funzione corrispondente alla tipologia del menu da creare
      * @return menu in base alla funzione specificata come parametro
      */
@@ -141,6 +141,16 @@ public class Main {
         return null;
     }
 
+    /**
+     * <h3>Metodo per la creazione di una squdra</h3>
+     * @param numero_pietre_per_golem numero di pietre a disposizione per un tamagolem
+     * @param numero_tamagolem numero dei tamagolem per una squdra
+     * @param numero_pietre_scorta numero delle pietre nella scorta di una squadra
+     * @param numero_elementi numero delle tipologia delle pietre nel gioco
+     * @param lista_corrispondenze rapresenta la llista con le corrispondenze chiave->nome pitre
+     * @param vita_massima rappresenta la vita dei tamagolem
+     * @return la squadra creata
+     */
     private static Squadra creaSquadra(int numero_pietre_per_golem, int numero_tamagolem, int numero_pietre_scorta, int numero_elementi, Corrispondenze lista_corrispondenze, int vita_massima ){
         //creo n tamagolem per la squdra, impostando solo la loro vita e se sono esausti
         ArrayList<Tamagolem> lista_tamagolem= new ArrayList<Tamagolem>();
@@ -164,8 +174,9 @@ public class Main {
     }
 
     /**
-     * metodo che crea l'oggetto tamagolem che inizializiamo con un array di pietre inizialmente nulle
-     * @param numero_pietre_per_golem
+     * <h7>metodo che crea l'oggetto tamagolem che inizializiamo con un array di pietre inizialmente nulle</h7>
+     * @param numero_pietre_per_golem rappresenta il numero della tipologia di pietre a disposizione per un tamagolem
+     * @param vita_inziale rappresenta
      * @return
      */
     private static Tamagolem creaTamagolem(int numero_pietre_per_golem, int vita_inziale){
