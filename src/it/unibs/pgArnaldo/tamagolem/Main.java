@@ -170,11 +170,12 @@ public class Main {
             }
         }
         Squadra nuova_squadra = new Squadra(lista_tamagolem, lista_pietre);
+        nuova_squadra.getLista_pietre(numero_elementi);
         return nuova_squadra;
     }
 
     /**
-     * <h7>metodo che crea l'oggetto tamagolem che inizializiamo con un array di pietre inizialmente nulle</h7>
+     * <h3>metodo che crea l'oggetto tamagolem che inizializiamo con un array di pietre inizialmente nulle</h3>
      * @param numero_pietre_per_golem rappresenta il numero della tipologia di pietre a disposizione per un tamagolem
      * @param vita_inziale rappresenta
      * @return

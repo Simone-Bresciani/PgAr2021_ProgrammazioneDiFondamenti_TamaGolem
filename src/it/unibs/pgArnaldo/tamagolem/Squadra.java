@@ -30,9 +30,9 @@ public class Squadra
     }
 
     /**
-     * Metodo per comunicare la lista pietre in modo più leggibile per l'utente
-     * Esempio di funzionamento:
-     *     al posto di comunicare [acqua, acqua, terra, terra] comunica [acqua(x2), terra(x2)]
+     * <h3>Metodo per comunicare la lista pietre in modo più leggibile per l'utente<br>
+     * Esempio di funzionamento:<br>
+     * al posto di comunicare [acqua, acqua, terra, terra] comunica [acqua(x2), terra(x2)]</h3>
      * @param numero_elementi ovvero il numero delle tipologie di pietre
      * @return nomi_pietre è una stringa che comunica le pietre totali a disposizione
      */
@@ -66,9 +66,9 @@ public class Squadra
     }
 
     /**
-     *
+     * <h3>Metodo per rimuovere una pietra della scorta della squadra</h3>
      * @param tipo_pietra ovvero il nome che la rappresenta
-     * @return ritorna true se la pietra e' stata tolta correttamente
+     * @return ritorna true se la pietra e' stata tolta correttamente, altrimenti false
      */
     public boolean togliPietre(String tipo_pietra){
         if(this.lista_pietre.contains(tipo_pietra)){
@@ -78,7 +78,7 @@ public class Squadra
     }
 
     /**
-     *
+     * <h3>Metodo che rimuove un tamagolem dalla lista dei tamagolem della squdra</h3>
      * @param tamagolem_da_eliminare ovvero l'oggetto tamagolem
      */
     public void togliTamagolem(Tamagolem tamagolem_da_eliminare){

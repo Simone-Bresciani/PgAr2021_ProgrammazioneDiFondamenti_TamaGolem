@@ -12,7 +12,7 @@ public class Equilibrio
 
     //METODO  EQUILIBRIO
     /**
-     * é un metodo che crea una matrice simmetrica rispetto alla diagonale principale che ha N(=numero di elementi in gioco) righe e N colonne, gli incroci di queste identificano
+     * é un metodo che crea una <b>matrice simmetrica rispetto alla diagonale principale</b> che ha N(=numero di elementi in gioco) righe e N colonne, gli incroci di queste identificano
      * la potenza(+) della mossa con cui attaccano oppure la il danno(-) che subiscono. Lo 0 sta ad indicare una interazione tra elementi uguali per cui non ci sará
      * un vincitore tra i due. La matrice é stata costruita in modo tale che, immettendo un numero N dispari (che verrá settato pari a 3,5,7 o 9 a seconda della
      * difficoltá della partita scelta), preso un elemento qualiasi questo vincerá su metá degli elementi avversari e perderá contro l'altra metá in modo tale da
@@ -21,9 +21,9 @@ public class Equilibrio
      * Una volta calcolata la matrice dei danni che avrá validitá fino al termine della partita,
      * si stabilisce la VITA massima dei tamagolem (uguale per tutti e valida per tutto il corso della partita) in modo tale che sup(W)=VITA , dove W indica línsieme di
      * tutti i valori di potenza dell'interazione presenti nell'Equilibrio.
+     * @param n rappresenta il numero della tipologia degli elementi (in base alla difficoltà scelta)
+     * @return oggetto equilibrio contente la matrice, la vita ed il numero degli elementi
      */
-
-
     public Equilibrio(int n){
 
         this.mat = new int[n][n];
