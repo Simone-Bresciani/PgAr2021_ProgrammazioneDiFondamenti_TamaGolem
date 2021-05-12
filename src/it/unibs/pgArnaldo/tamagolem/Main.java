@@ -42,59 +42,47 @@ public class Main {
             System.out.println();
 
             //assegnazione preliminare delle pietre per i primi 2 tamagolem
-
             //System.out.println(Costanti.TURNO_1);
             //InputDati.leggiStringa("...digita per continuare...\n");
-            System.out.printf(Costanti.GIOCATORE1 + Costanti.NUMERO_TAMAGOLEM + "\n\n", squadra1.getLista_tamagolem().size());
-            System.out.printf(Costanti.GIOCATORE1 + Costanti.SCEGLI_PIETRE + "\n", numero_pietre_per_golem);
+            assegnaPietre(numero_pietre_per_golem, squadra1, numero_elementi, Costanti.GIOCATORE1);
+            assegnaPietre(numero_pietre_per_golem, squadra2, numero_elementi, Costanti.GIOCATORE2);
 
-            for(int i=1; i<= numero_pietre_per_golem; i++){
-                System.out.println();
-                System.out.println(squadra1.getLista_pietre(numero_elementi));
-                String lettura;
-                do {
-                    System.out.printf(Costanti.INSERISCI_PIETRA, i);
-                    lettura = InputDati.leggiStringaNonVuota("");
-                }while(!squadra1.togliPietre(lettura));
-            }
-
-            System.out.println();
-            System.out.printf(Costanti.GIOCATORE2 + Costanti.NUMERO_TAMAGOLEM + "\n", squadra2.getLista_tamagolem().size());
-            System.out.printf(Costanti.GIOCATORE2 + Costanti.SCEGLI_PIETRE + "\n", numero_pietre_per_golem);
-            for(int i=1; i<= numero_pietre_per_golem; i++){
-                System.out.println();
-                System.out.println(squadra2.getLista_pietre(numero_elementi));
-
-                String lettura;
-                do {
-                    System.out.printf(Costanti.INSERISCI_PIETRA, i);
-                    lettura = InputDati.leggiStringaNonVuota("");
-                }while(!squadra2.togliPietre(lettura));
-            }
 
             //ciclo fino a battaglia conclusa che itera l'assegnazione di nuove pietre
             do{
-                //ad ogni turno comunico il numero di tamagolem disponibili
-                System.out.printf(Costanti.GIOCATORE1 + Costanti.NUMERO_TAMAGOLEM + "\n", squadra1.getLista_tamagolem().size());
-                System.out.printf(Costanti.GIOCATORE2 + Costanti.NUMERO_TAMAGOLEM + "\n", squadra2.getLista_tamagolem().size());
-                /*
-                int risultato_battaglia = scontro.lancia(squadra1.getLista_tamagolem().get(0), squadra2.getLista_tamagolem().get(0));
-                switch(risultato_battaglia){
+                int risultato_battaglia = scontro.lancia(squadra1.getLista_tamagolem().get(0), squadra2.getLista_tamagolem().get(0), lista_corrispondenze);
+                switch(risultato_battaglia) {
                     case 1://faccio ritornare 1 se il giocatore 1 ha perso il suo tamagolem per cui dovrá inserire le sue pietre
-                            squadra1.getLista_tamagolem().remove(0);
-                           //nuove pietre per nuovo tamagolem
+                        squadra1.getLista_tamagolem().remove(0);
+                        //nuove pietre per nuovo tamagolem
+                        assegnaPietre(numero_pietre_per_golem, squadra1, numero_elementi, Costanti.GIOCATORE1);
+                        System.out.println(Costanti.RIPRESA_BATTAGLIA);
                         break;
                     case 2: //faccio ritornare 2 se si tratta del giocatore 2
-                           squadra2.getLista_tamagolem().remove(0);
-                            //nuove pietre per nuovo tamagolem
+                        squadra2.getLista_tamagolem().remove(0);
+                        assegnaPietre(numero_pietre_per_golem, squadra2, numero_elementi, Costanti.GIOCATORE2);
+                        System.out.println(Costanti.RIPRESA_BATTAGLIA);
                         break;
                     case 3://faccio ritornare 3 se entrambi hanno perso i tamagolem e dovrenno riassegnare le pietre entrambi
-                            squadra1.getLista_tamagolem().remove(0);
-                            squadra2.getLista_tamagolem().remove(0);
-                            //nuove pietre per nuovo tamagolem
+                        squadra1.getLista_tamagolem().remove(0);
+                        squadra2.getLista_tamagolem().remove(0);
+                        assegnaPietre(numero_pietre_per_golem, squadra1, numero_elementi, Costanti.GIOCATORE1);
+                        assegnaPietre(numero_pietre_per_golem, squadra2, numero_elementi, Costanti.GIOCATORE2);
+                        System.out.println(Costanti.RIPRESA_BATTAGLIA);
                         break;
-                }*/
-                scontro.setConclusa(true);
+                }
+                    if(squadra1.getLista_tamagolem().size() == 0 && squadra2.getLista_tamagolem().size() == 0){
+                        System.out.println(Costanti.PAREGGIO);
+                        scontro.setConclusa(true);
+                    }else if (squadra2.getLista_tamagolem().size()==0){
+                        scontro.setVincitore(squadra1);
+                        scontro.setConclusa(true);
+                        System.out.println(Costanti.VINCITA + Costanti.GIOCATORE1);
+                    }else if (squadra1.getLista_tamagolem().size()==0) {
+                        scontro.setVincitore(squadra2);
+                        scontro.setConclusa(true);
+                        System.out.println(Costanti.VINCITA + Costanti.GIOCATORE2);
+                    }
             }while(!scontro.isConclusa());
             rivincita = InputDati.leggiIntero(Costanti.RIVINCITA);
             //uscirà dallo scontro quando vede che la partita è conclusa
@@ -189,5 +177,28 @@ public class Main {
         //imposto di default che non è esausto
         Tamagolem tamagolem = new Tamagolem(pietre_utilizzate, vita_inziale, false);
         return tamagolem;
+    }
+
+    private static void assegnaPietre(int numero_pietre_per_golem, Squadra squadra, int numero_elementi, String giocatore){
+        switch (giocatore) {
+            case Costanti.GIOCATORE1:
+                System.out.printf(Costanti.GIOCATORE1 + Costanti.NUMERO_TAMAGOLEM + "\n", squadra.getLista_tamagolem().size());
+                System.out.printf(Costanti.GIOCATORE1 + Costanti.SCEGLI_PIETRE + "\n", numero_pietre_per_golem);
+                break;
+            case Costanti.GIOCATORE2:
+                System.out.printf(Costanti.GIOCATORE2 + Costanti.NUMERO_TAMAGOLEM + "\n", squadra.getLista_tamagolem().size());
+                System.out.printf(Costanti.GIOCATORE2 + Costanti.SCEGLI_PIETRE + "\n", numero_pietre_per_golem);
+                break;
+        }
+        for(int i=1; i<= numero_pietre_per_golem; i++){
+            System.out.println();
+            System.out.println(squadra.getLista_pietre(numero_elementi));
+            String lettura;
+            do {
+                System.out.printf(Costanti.INSERISCI_PIETRA, i);
+                lettura = InputDati.leggiStringaNonVuota("");
+            }while(!squadra.togliPietre(lettura));
+            squadra.getLista_tamagolem().get(0).getPietre_utilizzate().add(lettura);
+        }
     }
 }

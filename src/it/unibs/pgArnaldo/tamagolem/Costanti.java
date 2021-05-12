@@ -19,6 +19,9 @@ public class Costanti {
     public static final String SCEGLI_PIETRE = ": scegli le %d pietre da assegnare al tuo tamagolem prendendole dal tuo zaino qui sotto.";
     public static final String INSERISCI_PIETRA = "Scrivi l'elemento della pietra numero %d: ";
     public static final String NUMERO_TAMAGOLEM = ": hai a disposizione solamente %d tamagolem, gioca bene le tue pietre!";
+    public static final String RIPRESA_BATTAGLIA = "La battaglia riprende!";
+    public static final String PAREGGIO = "PAREGGIO";
+    public static final String VINCITA = "Ha vinto il giocatore: ";
     //fine del programma
     public static final String END = "Scontro terminato";
     public static final String RIVINCITA = "Volete fare una rivincita? Se si', digita 1!";

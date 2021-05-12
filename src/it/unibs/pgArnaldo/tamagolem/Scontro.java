@@ -49,7 +49,26 @@ public class Scontro {
         this.conclusa = conclusa;
     }
 
-    public void lancia(Tamagolem tamgolem1, Tamagolem tamagolem2){
+    public int lancia(Tamagolem tamgolem1, Tamagolem tamagolem2, Corrispondenze lista_corrispondenza){
+        int vita1= tamgolem1.getVita();
+        int vita2= tamagolem2.getVita();
+        for(int i=0; vita1 >0 || vita2>0 ; i++){
+            //controllo che i sia arrivata alla finr dell'array, per poi far ripartire l'array dalla prima pietra
+            if(i == tamgolem1.getPietre_utilizzate().size()){
+                i=0;
+            }
+            for(int k=0; k<9; k++){
+                if(tamgolem1.getPietre_utilizzate().get(i).equals(lista_corrispondenza.getNome(k))){
 
+                }
+            }
+
+        }
+        if(vita1 <= 0 && vita2 <= 0){
+            return 3;
+        }else if(vita1 <= 0){
+            return  1;
+        }else
+            return 2;
     }
 }

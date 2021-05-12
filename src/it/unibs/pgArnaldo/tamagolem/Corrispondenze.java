@@ -8,8 +8,7 @@ public class Corrispondenze
 {
     //ATTRIBUTO
     Map<Integer, String> lista_corrispondenze;
-
-
+    Map<String, Integer> lista_corrispondenze_reverse;
 
     //COSTRUTTORE
     public Corrispondenze (){
@@ -23,6 +22,9 @@ public class Corrispondenze
         lista_corrispondenze.put(6, "elettro");
         lista_corrispondenze.put(7, "buio");
         lista_corrispondenze.put(8, "luce");
+
+        lista_corrispondenze_reverse = new HashMap<String, Integer>();
+
     }
     //GETTER
     public Map<Integer, String> getLista_corrispondenze() {
