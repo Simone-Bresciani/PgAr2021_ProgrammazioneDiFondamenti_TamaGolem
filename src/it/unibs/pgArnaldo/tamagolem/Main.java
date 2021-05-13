@@ -13,7 +13,7 @@ public class Main {
         do{
             //creo una lista con delle associazioni tra un indice e il nome degli elementi
             //ne creo 9, poi in base alla difficoltà scelta, ne utilizzerò o tutte o una parte di esse
-            Corrispondenze lista_corrispondenze = new Corrispondenze();
+            Corrispondenze corrispondenze = new Corrispondenze();
             //creo il menu per mostrare i livelli di difficoltà
             MyMenu menu_difficolta = nuovoMenu("difficolta");
             //stampo il menu
@@ -32,8 +32,8 @@ public class Main {
             //calcola la vita massima dei tamagolem
             int vita_massima = equilibrio.getVita();
             //inzio gioco: creo i 2 giocatori
-            Squadra squadra1 = creaSquadra(numero_pietre_per_golem, numero_tamagolem, numero_pietre_scorta, numero_elementi, lista_corrispondenze, vita_massima);
-            Squadra squadra2 = creaSquadra(numero_pietre_per_golem, numero_tamagolem, numero_pietre_scorta, numero_elementi, lista_corrispondenze, vita_massima);
+            Squadra squadra1 = creaSquadra(numero_pietre_per_golem, numero_tamagolem, numero_pietre_scorta, numero_elementi, corrispondenze, vita_massima);
+            Squadra squadra2 = creaSquadra(numero_pietre_per_golem, numero_tamagolem, numero_pietre_scorta, numero_elementi, corrispondenze, vita_massima);
             //creo lo scontro, impostando che la partita non è conclusa
             Scontro scontro = new Scontro(squadra1, squadra2, false);
             //inzio scontro
@@ -50,7 +50,7 @@ public class Main {
 
             //ciclo fino a battaglia conclusa che itera l'assegnazione di nuove pietre
             do{
-                int risultato_battaglia = scontro.lancia(squadra1.getLista_tamagolem().get(0), squadra2.getLista_tamagolem().get(0), lista_corrispondenze);
+                int risultato_battaglia = scontro.lancia(squadra1.getLista_tamagolem().get(0), squadra2.getLista_tamagolem().get(0), corrispondenze, equilibrio);
                 switch(risultato_battaglia) {
                     case 1://faccio ritornare 1 se il giocatore 1 ha perso il suo tamagolem per cui dovrá inserire le sue pietre
                         squadra1.getLista_tamagolem().remove(0);
@@ -84,6 +84,8 @@ public class Main {
                         System.out.println(Costanti.VINCITA + Costanti.GIOCATORE2);
                     }
             }while(!scontro.isConclusa());
+            System.out.println(Costanti.FINITA);
+            equilibrio.stampaMatriceEquilibrio();
             rivincita = InputDati.leggiIntero(Costanti.RIVINCITA);
             //uscirà dallo scontro quando vede che la partita è conclusa
         }while(rivincita == 1);
@@ -135,11 +137,11 @@ public class Main {
      * @param numero_tamagolem numero dei tamagolem per una squdra
      * @param numero_pietre_scorta numero delle pietre nella scorta di una squadra
      * @param numero_elementi numero delle tipologia delle pietre nel gioco
-     * @param lista_corrispondenze rapresenta la llista con le corrispondenze chiave->nome pitre
+     * @param corrispondenze rapresenta la llista con le corrispondenze chiave->nome pitre
      * @param vita_massima rappresenta la vita dei tamagolem
      * @return la squadra creata
      */
-    private static Squadra creaSquadra(int numero_pietre_per_golem, int numero_tamagolem, int numero_pietre_scorta, int numero_elementi, Corrispondenze lista_corrispondenze, int vita_massima ){
+    private static Squadra creaSquadra(int numero_pietre_per_golem, int numero_tamagolem, int numero_pietre_scorta, int numero_elementi, Corrispondenze corrispondenze, int vita_massima ){
         //creo n tamagolem per la squdra, impostando solo la loro vita e se sono esausti
         ArrayList<Tamagolem> lista_tamagolem= new ArrayList<Tamagolem>();
         //creo i tamagolem e l'aggiungo all'arrayList dei tamagolem disponibili per la squadra
@@ -154,7 +156,7 @@ public class Main {
             //per ogni tipologia di pietra, inserisco nell'arrayList il nome della pietra ripetuto tante volte quanto il numero delle pietre/numero degli elemnti
             for(int j=0; j<(numero_pietre_scorta/numero_elementi); j++){
                 //aggiungo alla mia lista il nome della pietra
-                lista_pietre.add(lista_corrispondenze.getNome(i));
+                lista_pietre.add(corrispondenze.getNome(i));
             }
         }
         Squadra nuova_squadra = new Squadra(lista_tamagolem, lista_pietre);
@@ -190,15 +192,15 @@ public class Main {
                 System.out.printf(Costanti.GIOCATORE2 + Costanti.SCEGLI_PIETRE + "\n", numero_pietre_per_golem);
                 break;
         }
-        for(int i=1; i<= numero_pietre_per_golem; i++){
+        for(int i=0; i< numero_pietre_per_golem; i++){
             System.out.println();
             System.out.println(squadra.getLista_pietre(numero_elementi));
             String lettura;
             do {
-                System.out.printf(Costanti.INSERISCI_PIETRA, i);
+                System.out.printf(Costanti.INSERISCI_PIETRA, i+1);
                 lettura = InputDati.leggiStringaNonVuota("");
             }while(!squadra.togliPietre(lettura));
-            squadra.getLista_tamagolem().get(0).getPietre_utilizzate().add(lettura);
+            squadra.getLista_tamagolem().get(0).getPietre_utilizzate().set(i, lettura);
         }
     }
 }

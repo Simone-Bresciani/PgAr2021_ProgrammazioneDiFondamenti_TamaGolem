@@ -131,6 +131,14 @@ public class Equilibrio
         return vita;
     }
 
+    /**
+     * <h3>Metodo per la comiunicazione della matrice</h3>
+     * @return mat corrisponde alla matrice
+     */
+    public int[][] getMat() {
+        return mat;
+    }
+
 
     public void stampaMatriceEquilibrio() {
         for (int a=0; a<n; a++){

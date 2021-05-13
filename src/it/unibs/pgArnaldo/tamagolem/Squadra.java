@@ -43,7 +43,7 @@ public class Squadra
         nomi_pietre += "ZAINO: [ ";
         //ciclo per la lunghezza dell'arraylist, senza l'ultima posizione
         //altrimenti darebbe errore a confrontare l'ultimo elemento dell'array con l'elemento dopo
-
+        //control
         for(int j=0; j< lista_pietre.size()-1; j++) {
 
             if(!lista_pietre.get(j).equals(lista_pietre.get(j+1))) {

@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class Corrispondenze
 {
+
     //ATTRIBUTO
     Map<Integer, String> lista_corrispondenze;
     Map<String, Integer> lista_corrispondenze_reverse;
@@ -24,18 +25,32 @@ public class Corrispondenze
         lista_corrispondenze.put(8, "luce");
 
         lista_corrispondenze_reverse = new HashMap<String, Integer>();
-
+        for(int i=0; i < 9; i++){
+            this.lista_corrispondenze_reverse.put(lista_corrispondenze.get(i), i);
+        }
     }
     //GETTER
     public Map<Integer, String> getLista_corrispondenze() {
         return lista_corrispondenze;
     }
+    public Map<String, Integer> getLista_corrispondenze_reverse() {
+        return lista_corrispondenze_reverse;
+    }
 
     /**
-     * metodo che ritorna il nome della pietra, data la key inserita
+     * <h3>metodo che ritorna il nome della pietra, data la key inserita</h3>
      * @param i rappresenta la key
      * @return String nome della pietra
      */
     public String getNome(int i) { return lista_corrispondenze.get(i); }
+
+    /**
+     * <h3>metodo che ritorna l'integer della pietra, data la stringa inserita (lavora sulla hashmap reverse)</h3>
+     * @param str rappresenta la stringa(la key della hashmap reverse)
+     * @return Integer numero della pietra
+     */
+    public Integer getKey(String str) {
+        return lista_corrispondenze_reverse.get(str);
+    }
 
 }

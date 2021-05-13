@@ -23,7 +23,8 @@ public class Costanti {
     public static final String PAREGGIO = "PAREGGIO";
     public static final String VINCITA = "Ha vinto il giocatore: ";
     //fine del programma
-    public static final String END = "Scontro terminato";
+    public static final String FINITA = "";
+    public static final String END = "Fine del programma :)";
     public static final String RIVINCITA = "Volete fare una rivincita? Se si', digita 1!";
 
 }
