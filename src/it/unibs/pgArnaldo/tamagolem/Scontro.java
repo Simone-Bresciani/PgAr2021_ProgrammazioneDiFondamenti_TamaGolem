@@ -63,7 +63,6 @@ public class Scontro {
         int vita1 = tamgolem1.getVita();
         int vita2 = tamagolem2.getVita();
         int[][] mat = equilibrio.getMat();
-
         for(int i=0; vita1>0 && vita2>0 ; i++) {
             //controllo che i sia arrivata alla finr dell'array, per poi far ripartire l'array dalla prima pietra
             if (i == tamgolem1.getPietre_utilizzate().size()) {
@@ -91,14 +90,15 @@ public class Scontro {
                 vita2 -= mat[indice_pietra1][indice_pietra2];
             }
         }
+        //assegno la nuova vita ai tamagolem (così la squadra con il golem ancora in vita lo riutilizzerà con la vita restante)
         tamgolem1.setVita(vita1);
         tamagolem2.setVita(vita2);
-        System.out.println();
+        //in base alle vite dei tamagolem faccio ritornare dei valori
         if(vita1 <= 0 && vita2 <= 0){
-            return 3;
+            return 3; //morti entrambi i tamagolem
         }else if(vita1 <= 0){
-            return  1;
+            return  1; //morto tamagolem 1
         }else
-            return 2;
+            return 2; //morto tamagolem 2
     }
 }

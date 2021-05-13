@@ -41,11 +41,12 @@ public class Squadra
         String nomi_pietre = new String();
         //in testa alla stringa metterò l'apertura dello zaino
         nomi_pietre += "ZAINO: [ ";
-        //ciclo per la lunghezza dell'arraylist, senza l'ultima posizione
-        //altrimenti darebbe errore a confrontare l'ultimo elemento dell'array con l'elemento dopo
-        //control
+        /*ciclo per la lunghezza dell'arraylist, senza l'ultima posizione
+          altrimenti darebbe errore a confrontare l'ultimo elemento dell'array con l'elemento dopo
+          controllo se l'elemento corrente è l'ultimo del suo tipo, se così allora cicla questa Stringa e vede quante volte
+          presente nell'array stampando poi la quantità di volte cui è presente.
+        */
         for(int j=0; j< lista_pietre.size()-1; j++) {
-
             if(!lista_pietre.get(j).equals(lista_pietre.get(j+1))) {
                 int k = 0;
                 for (int i = 0; i < lista_pietre.size(); i++) {
@@ -54,7 +55,12 @@ public class Squadra
                 nomi_pietre += lista_pietre.get(j) + "(x" + k + ") ";
             }
         }
-
+        /*
+            quando esce dal for precedente l'ultima tipologia di elementi non è stata stampata poichè il penultimo elemento dell'array
+            (.size()-2 ossia l'ultimo elemento del for) sarà uguale all'ultimo elemento.
+            Siccome non posso controllare l'ultimo elemento dell'array con il successivo perchè uscirebbe dalla memoria
+            allora devo farlo separato prendendo la stringa dell'ultimo elemento e controllandola all'interno di un for a parte.
+         */
         int f=0;
         for (int i = 0; i < lista_pietre.size(); i++) {
             if (lista_pietre.get(i).equals(lista_pietre.get(lista_pietre.size()-1))) f++;

@@ -2,8 +2,8 @@ package it.unibs.pgArnaldo.tamagolem;
 
 import mylib.InputDati;
 import mylib.MyMenu;
-
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
@@ -18,8 +18,14 @@ public class Main {
             MyMenu menu_difficolta = nuovoMenu("difficolta");
             //stampo il menu
             menu_difficolta.stampaMenuSenzaUscita();
+            //continuo a chiedere la difficoltà se non è inserita correttamente
+            int difficolta = InputDati.leggiIntero(Costanti.SCELTA_DIFFICOLTA);
+            while(difficolta < 1 || difficolta > 4){
+                System.out.println(Costanti.ERRORE_DIFFICOLTA);
+                difficolta = InputDati.leggiIntero(Costanti.SCELTA_DIFFICOLTA);
+            }
             //in base alla difficolta scelta, imposterò il nuemero della tipologia degli elementi disponibili
-            int numero_elementi = calcolaElementi(InputDati.leggiIntero(Costanti.SCELTA_DIFFICOLTA));
+            int numero_elementi = calcolaElementi(difficolta);
             //in base al numero degli elementi genero l'equilibrio
             Equilibrio equilibrio = new Equilibrio(numero_elementi);
 
@@ -37,14 +43,12 @@ public class Main {
             //creo lo scontro, impostando che la partita non è conclusa
             Scontro scontro = new Scontro(squadra1, squadra2, false);
             //inzio scontro
-            System.out.println();
-            System.out.println(Costanti.INIZIO_SCONTRO);
-            System.out.println();
+            System.out.println("\n" + Costanti.INIZIO_SCONTRO + "\n");
 
-            //assegnazione preliminare delle pietre per i primi 2 tamagolem
-            //System.out.println(Costanti.TURNO_1);
-            //InputDati.leggiStringa("...digita per continuare...\n");
+            //assegnazione preliminare delle pietre
+            premiPerContinuare(Costanti.GIOCATORE1);
             assegnaPietre(numero_pietre_per_golem, squadra1, numero_elementi, Costanti.GIOCATORE1);
+            premiPerContinuare(Costanti.GIOCATORE2);
             assegnaPietre(numero_pietre_per_golem, squadra2, numero_elementi, Costanti.GIOCATORE2);
 
 
@@ -54,19 +58,30 @@ public class Main {
                 switch(risultato_battaglia) {
                     case 1://faccio ritornare 1 se il giocatore 1 ha perso il suo tamagolem per cui dovrá inserire le sue pietre
                         squadra1.getLista_tamagolem().remove(0);
+                        System.out.printf(Costanti.MORTO + Costanti.GIOCATORE1 + "\n");
+                        if(squadra1.getLista_tamagolem().size() == 0) break;
                         //nuove pietre per nuovo tamagolem
+                        premiPerContinuare(Costanti.GIOCATORE1);
                         assegnaPietre(numero_pietre_per_golem, squadra1, numero_elementi, Costanti.GIOCATORE1);
                         System.out.println(Costanti.RIPRESA_BATTAGLIA);
                         break;
                     case 2: //faccio ritornare 2 se si tratta del giocatore 2
                         squadra2.getLista_tamagolem().remove(0);
+                        System.out.printf( Costanti.MORTO + Costanti.GIOCATORE2 + "\n");
+                        if(squadra2.getLista_tamagolem().size() == 0) break;
+                        premiPerContinuare(Costanti.GIOCATORE2);
                         assegnaPietre(numero_pietre_per_golem, squadra2, numero_elementi, Costanti.GIOCATORE2);
                         System.out.println(Costanti.RIPRESA_BATTAGLIA);
                         break;
                     case 3://faccio ritornare 3 se entrambi hanno perso i tamagolem e dovrenno riassegnare le pietre entrambi
                         squadra1.getLista_tamagolem().remove(0);
                         squadra2.getLista_tamagolem().remove(0);
+                        System.out.printf(Costanti.MORTO + Costanti.GIOCATORE1 + "\n");
+                        System.out.printf(Costanti.MORTO + Costanti.GIOCATORE2 + "\n");
+                        if(squadra1.getLista_tamagolem().size() == 0 || squadra2.getLista_tamagolem().size() == 0) break;
+                        premiPerContinuare(Costanti.GIOCATORE1);
                         assegnaPietre(numero_pietre_per_golem, squadra1, numero_elementi, Costanti.GIOCATORE1);
+                        premiPerContinuare(Costanti.GIOCATORE2);
                         assegnaPietre(numero_pietre_per_golem, squadra2, numero_elementi, Costanti.GIOCATORE2);
                         System.out.println(Costanti.RIPRESA_BATTAGLIA);
                         break;
@@ -85,7 +100,10 @@ public class Main {
                     }
             }while(!scontro.isConclusa());
             System.out.println(Costanti.FINITA);
+            //alla fine dello scontro stampa la matrice
+            System.out.println(Costanti.STAMPA_MATRICE);
             equilibrio.stampaMatriceEquilibrio();
+            //chideo se vogliono fare la rivincita
             rivincita = InputDati.leggiIntero(Costanti.RIVINCITA);
             //uscirà dallo scontro quando vede che la partita è conclusa
         }while(rivincita == 1);
@@ -160,7 +178,6 @@ public class Main {
             }
         }
         Squadra nuova_squadra = new Squadra(lista_tamagolem, lista_pietre);
-        nuova_squadra.getLista_pietre(numero_elementi);
         return nuova_squadra;
     }
 
@@ -181,10 +198,20 @@ public class Main {
         return tamagolem;
     }
 
+    /**
+     * <h3>Questo metodo serve per assegnare le pietre ai Tamagolem delle 2 squadre</h3>
+     * @param numero_pietre_per_golem rappresenta il numero delle pietre diponibili per un golem
+     * @param squadra ovvero la squadra alla quale appartiene il tamagolem
+     * @param numero_elementi rappresenta il numero della tipologia delle pietre nello scontro
+     * @param giocatore è un identificativo per capire su quale squdra stiamo agendo
+     */
     private static void assegnaPietre(int numero_pietre_per_golem, Squadra squadra, int numero_elementi, String giocatore){
+        //faccio uno switch per capire a quale giocatore mi sto riferendo
         switch (giocatore) {
             case Costanti.GIOCATORE1:
+                //comunico quanti tamagolem ha a disposizione
                 System.out.printf(Costanti.GIOCATORE1 + Costanti.NUMERO_TAMAGOLEM + "\n", squadra.getLista_tamagolem().size());
+                //dico in numero pietre che si ha a disposizione da assegnare al tamagolem
                 System.out.printf(Costanti.GIOCATORE1 + Costanti.SCEGLI_PIETRE + "\n", numero_pietre_per_golem);
                 break;
             case Costanti.GIOCATORE2:
@@ -192,15 +219,44 @@ public class Main {
                 System.out.printf(Costanti.GIOCATORE2 + Costanti.SCEGLI_PIETRE + "\n", numero_pietre_per_golem);
                 break;
         }
+        //ciclo fino a raggiungere il numero massimo di pietre disponibili da assegnare ad un tamagolem
         for(int i=0; i< numero_pietre_per_golem; i++){
-            System.out.println();
-            System.out.println(squadra.getLista_pietre(numero_elementi));
-            String lettura;
-            do {
+            //comunico tutte le pietre disponibili nello zaino della squadra
+            System.out.println("\n" + squadra.getLista_pietre(numero_elementi));
+            //comunico di inserire la pietra all' i+1-esimo elemento, i+1 così parte da 1
+            System.out.printf(Costanti.INSERISCI_PIETRA, i+1);
+            String lettura = InputDati.leggiStringaNonVuota("");
+            //controllo che la pietra esista veramente
+            while (!squadra.togliPietre(lettura)){
+                //se non esiste la pietra inserita da errore
+                System.out.printf(Costanti.ERRORE_PIETRA);
+                //fa reinserire la pietra, visto che aveva sbagliato
                 System.out.printf(Costanti.INSERISCI_PIETRA, i+1);
                 lettura = InputDati.leggiStringaNonVuota("");
-            }while(!squadra.togliPietre(lettura));
+            };
+            //imposto all'i-esimo elemento delle pietre disponibili del PRIMO tamagolem della squadra
+            //lo imposto sempre al primo perchè quando un tamagolem viene eliminato si rimuove quello in prima posizione
             squadra.getLista_tamagolem().get(0).getPietre_utilizzate().set(i, lettura);
         }
     }
+
+    /**
+     *<h3>metodo che interrompe il flusso del programma per avvisare di non spiare il turno avversario, bisogna premere un tasto per riprendere il programma</h3>
+     * @param giocatore dice qual è il turno del giocatore
+     */
+    private static void premiPerContinuare(String giocatore){
+        switch (giocatore){
+            case Costanti.GIOCATORE1:
+                System.out.printf(Costanti.TURNO, Costanti.GIOCATORE1);
+                break;
+            case Costanti.GIOCATORE2:
+                System.out.printf(Costanti.TURNO, Costanti.GIOCATORE2);
+                break;
+        }
+        System.out.println(Costanti.CONTINUA);
+        Scanner reader = new Scanner(System.in);
+        String invio = reader.nextLine();
+    }
+
 }
+

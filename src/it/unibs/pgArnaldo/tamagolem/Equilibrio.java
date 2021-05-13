@@ -91,7 +91,9 @@ public class Equilibrio
                 mat[0][1] += mat[1][s];
             }
 
-            //copio la metá matrice e la convalido
+            /* Copio la metá matrice e la convalido
+                Una matrice è invalida se per casualità (molto rara) dei numeri estratti sono
+             */
             for (int a = 0; a< n -1; a++){
                 for (int b = a+1; b< n; b++){
                     if(mat[a][b]==0) invalido = true;
@@ -139,7 +141,9 @@ public class Equilibrio
         return mat;
     }
 
-
+    /**
+     * <h3>Metodo per la stampa della matrice dell'equilibrio a fine partita</h3>
+     */
     public void stampaMatriceEquilibrio() {
         for (int a=0; a<n; a++){
             for (int b=0; b<n; b++){

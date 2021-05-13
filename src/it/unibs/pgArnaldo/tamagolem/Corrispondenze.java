@@ -12,6 +12,12 @@ public class Corrispondenze
     Map<String, Integer> lista_corrispondenze_reverse;
 
     //COSTRUTTORE
+
+    /**
+     * Creo 2 map:
+     *     1) con la corrispondenza intero -> stringa, che è lista_corrispondenze
+     *     2) con la corrispondenza stringa -> intero, che è lista_corrispondenze_reverse
+     */
     public Corrispondenze (){
         lista_corrispondenze = new HashMap<Integer, String>();
         lista_corrispondenze.put(0, "erba");
