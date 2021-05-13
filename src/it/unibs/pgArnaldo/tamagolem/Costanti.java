@@ -15,7 +15,8 @@ public class Costanti {
     public static final String GIOCATORE1 = "GIOCATORE 1";
     public static final String GIOCATORE2 = "GIOCATORE 2";
     //getsione scontro
-    public static final String INIZIO_SCONTRO = "LA BATTAGLIA HA INIZIO! Due piccoli tamagolem sbucano da dietro i propri allenatori pronti per iniziare uno scontro all'ultima pietra!";
+    public static final String INIZIO_SCONTRO = "LA BATTAGLIA HA INIZIO! Due piccoli Tamagolem sbucano da dietro i propri allenatori pronti per iniziare uno scontro all'ultima pietra!";
+    public static final String COMBATTIMENTO = "\nI due Tamagolem scagliano le loro pietre facendole ruotare vorticosamente sul campo di battaglia!";
     public static final String TURNO = "\nE' il turno del %s";
     public static final String CONTINUA = "\n...premi un tasto qualsiasi per continuare...";
     public static final String SCEGLI_PIETRE = ": scegli le %d pietre da assegnare al tuo tamagolem prendendole dal tuo zaino qui sotto.";

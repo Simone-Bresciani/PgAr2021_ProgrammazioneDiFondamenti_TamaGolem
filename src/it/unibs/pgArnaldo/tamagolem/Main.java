@@ -51,6 +51,7 @@ public class Main {
             premiPerContinuare(Costanti.GIOCATORE2);
             assegnaPietre(numero_pietre_per_golem, squadra2, numero_elementi, Costanti.GIOCATORE2);
 
+            System.out.println(Costanti.COMBATTIMENTO);
 
             //ciclo fino a battaglia conclusa che itera l'assegnazione di nuove pietre
             do{
