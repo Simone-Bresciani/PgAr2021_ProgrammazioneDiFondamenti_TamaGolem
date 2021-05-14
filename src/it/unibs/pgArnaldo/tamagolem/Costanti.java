@@ -4,7 +4,7 @@ public class Costanti {
 
     //benvenuto
     public static final String CORNICE_SUP = "┌———————————————————————————————————————————————————————————————————————————————┐";
-    public static final String BENVENUTO = "Benuto nel programma Tamagolem del gruppo Programmazione di fondamenti :)";
+    public static final String BENVENUTO = "Benvenut* nel programma Tamagolem del gruppo Programmazione di fondamenti :)";
     public static final  String CORNICE_INF = "└———————————————————————————————————————————————————————————————————————————————┘";
 
     //scelta difficolta
