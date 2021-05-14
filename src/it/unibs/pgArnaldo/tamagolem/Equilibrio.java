@@ -18,7 +18,7 @@ public class Equilibrio
      * Lo 0 sta ad indicare una interazione tra elementi uguali per cui non ci sará
      * un vincitore tra i due.<br>
      * La matrice é stata costruita in modo tale che la somma dei danni in output e dei danni ricevuti per ogni elemento é sempre pari a 0.<br>
-     * Il valore di interazione tra due elementi é sempre maggiore di 0.<br>
+     * Il valore di interazione tra due elementi differenti é sempre maggiore di 0.<br>
      * Una volta calcolata la matrice dei danni che avrá validitá fino al termine della partita,
      * si stabilisce la VITA massima dei tamagolem (uguale per tutti e valida per tutto il corso della partita) in modo tale che sup(W)=VITA , dove W indica línsieme di
      * tutti i valori di potenza dell'interazione presenti nell'Equilibrio.
@@ -89,9 +89,10 @@ public class Equilibrio
     }
 
     /**
-     * Metodo che data la matrice assegna il suo valore massimo alla vita
+     * Metodo che data la matrice assegna il suo valore massimo alla vita;
+     * cosí facendo si ottiene che sup(W) = vita, dove W é l'insieme di tutte le mosse.
      * @param mat matrice dell'equilibrio
-     * @param n numero elementi, lunghezza delle righe e colonne della matrice
+     * @param n numero elementi(= alla lunghezza delle righe e colonne della matrice)
      * @return
      */
     private int calcolaVita(int [][] mat, int n) {

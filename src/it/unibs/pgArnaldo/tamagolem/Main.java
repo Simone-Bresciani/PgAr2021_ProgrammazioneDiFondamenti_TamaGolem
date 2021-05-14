@@ -57,9 +57,10 @@ public class Main {
 
             //ciclo fino a battaglia conclusa che itera l'assegnazione di nuove pietre
             do{
+                //invoco il metodo che calcola i danni di uno scontro tra due tamagolem e comunico il risultato a video
                 int risultato_battaglia = scontro.lancia(squadra1.getLista_tamagolem().get(0), squadra2.getLista_tamagolem().get(0), corrispondenze, equilibrio);
                 switch(risultato_battaglia) {
-                    case 1://faccio ritornare 1 se il giocatore 1 ha perso il suo tamagolem per cui dovrá inserire le sue pietre
+                    case 1: //faccio ritornare 1 se il giocatore 1 ha perso il suo tamagolem per cui dovrá inserire le sue pietre
                         squadra1.getLista_tamagolem().remove(0);
                         System.out.printf(Costanti.MORTO + Costanti.GIOCATORE1 + "\n");
                         if(squadra1.getLista_tamagolem().size() == 0) break;
@@ -72,23 +73,26 @@ public class Main {
                         squadra2.getLista_tamagolem().remove(0);
                         System.out.printf( Costanti.MORTO + Costanti.GIOCATORE2 + "\n");
                         if(squadra2.getLista_tamagolem().size() == 0) break;
+                        //nuove pietre per nuovo tamagolem
                         premiPerContinuare(Costanti.GIOCATORE2);
                         assegnaPietre(numero_pietre_per_golem, squadra2, numero_elementi, Costanti.GIOCATORE2);
                         System.out.println(Costanti.RIPRESA_BATTAGLIA);
                         break;
-                    case 3://faccio ritornare 3 se entrambi hanno perso i tamagolem e dovrenno riassegnare le pietre entrambi
+                    case 3: //faccio ritornare 3 se entrambi hanno perso i tamagolem e dovrenno riassegnare le pietre entrambi
                         squadra1.getLista_tamagolem().remove(0);
                         squadra2.getLista_tamagolem().remove(0);
                         System.out.printf(Costanti.MORTO + Costanti.GIOCATORE1 + "\n");
                         System.out.printf(Costanti.MORTO + Costanti.GIOCATORE2 + "\n");
                         if(squadra1.getLista_tamagolem().size() == 0 || squadra2.getLista_tamagolem().size() == 0) break;
+                        //nuove pietre per nuovo tamagolem
                         premiPerContinuare(Costanti.GIOCATORE1);
                         assegnaPietre(numero_pietre_per_golem, squadra1, numero_elementi, Costanti.GIOCATORE1);
+                        //nuove pietre per nuovo tamagolem
                         premiPerContinuare(Costanti.GIOCATORE2);
                         assegnaPietre(numero_pietre_per_golem, squadra2, numero_elementi, Costanti.GIOCATORE2);
                         System.out.println(Costanti.RIPRESA_BATTAGLIA);
                         break;
-                }
+                } //controllo ora se almeno una delle due squadre é esausta e comunico l'esito della partita
                     if(squadra1.getLista_tamagolem().size() == 0 && squadra2.getLista_tamagolem().size() == 0){
                         System.out.println(Costanti.PAREGGIO);
                         scontro.setConclusa(true);
@@ -114,6 +118,7 @@ public class Main {
             }
             //uscirà dallo scontro quando vede che la partita è conclusa
         }while(rivincita == 1);
+        //se non si vuole fare la rivincita si esce dal programma
         System.out.println(Costanti.END);
     }
 
