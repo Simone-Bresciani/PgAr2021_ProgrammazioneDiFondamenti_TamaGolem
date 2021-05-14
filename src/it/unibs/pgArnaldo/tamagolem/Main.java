@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        //messaggio di benvenuto
+        benvenuto();
 
         int rivincita = 2; // variabile per far ripartire da capo lo scontro in caso si voglia rigiocare
         do{
@@ -17,7 +19,7 @@ public class Main {
             //ne creo 9, poi in base alla difficoltà scelta, ne utilizzerò o tutte o una parte di esse
             Corrispondenze corrispondenze = new Corrispondenze();
             //creo il menu per mostrare i livelli di difficoltà
-            MyMenu menu_difficolta = nuovoMenu("difficolta");
+            MyMenu menu_difficolta = nuovoMenu(Costanti.DIFFICOLTA);
             //stampo il menu
             menu_difficolta.stampaMenuSenzaUscita();
             //continuo a chiedere la difficoltà se non è inserita correttamente
@@ -61,8 +63,11 @@ public class Main {
                 int risultato_battaglia = scontro.lancia(squadra1.getLista_tamagolem().get(0), squadra2.getLista_tamagolem().get(0), corrispondenze, equilibrio);
                 switch(risultato_battaglia) {
                     case 1: //faccio ritornare 1 se il giocatore 1 ha perso il suo tamagolem per cui dovrá inserire le sue pietre
+                        //rimuovo il tamagolem morto
                         squadra1.getLista_tamagolem().remove(0);
+                        //comunico che è morto il tamagolem
                         System.out.printf(Costanti.MORTO + Costanti.GIOCATORE1 + "\n");
+                        // se il giocatore li ha persi tutti esce dallo switch senza richiedere delle pietre
                         if(squadra1.getLista_tamagolem().size() == 0) break;
                         //nuove pietre per nuovo tamagolem
                         premiPerContinuare(Costanti.GIOCATORE1);
@@ -148,7 +153,7 @@ public class Main {
      */
     private static MyMenu nuovoMenu(String funzione){
         switch (funzione){
-            case "difficolta":
+            case Costanti.DIFFICOLTA:
                 String[] menu_d = new String[4];
                 menu_d[0] = Costanti.EASY;
                 menu_d[1] = Costanti.MEDIUM;
@@ -202,6 +207,7 @@ public class Main {
     private static Tamagolem creaTamagolem(int numero_pietre_per_golem, int vita_inziale){
         //creo un arraylist di pietre
         ArrayList<String> pietre_utilizzate = new ArrayList<String>();
+        //inzializzo le pietre a null
         for(int i=0; i<numero_pietre_per_golem; i++){
             pietre_utilizzate.add(null);
         }
@@ -275,10 +281,16 @@ public class Main {
      * @param risposta ovvero la risposta inserita dall'utente
      * @return un intero che rappresenta la scelta dell'utente 1-rivincita 2-niente rivincita 3-ha inserito una parola errata
      */
-    public static int seRivincita(String risposta) {
+    private static int seRivincita(String risposta) {
         if (risposta.equals("si") || risposta.equals("SI") || risposta.equals("Si")) return 1;
         if (risposta.equals("no") || risposta.equals("NO") || risposta.equals("No")) return 2;
         return 3;
+    }
+
+    private static void benvenuto(){
+        System.out.println(Costanti.CORNICE_SUP);
+        System.out.printf("|\t"+Costanti.BENVENUTO+" \t|\n");
+        System.out.println(Costanti.CORNICE_INF);
     }
 }
 

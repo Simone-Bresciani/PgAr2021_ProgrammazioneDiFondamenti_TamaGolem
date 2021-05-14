@@ -7,7 +7,8 @@ e sia presentata in fondo al menu
 */
 public class MyMenu
 {
-  final private static String CORNICE = "--------------------------------";
+  final private static String CORNICE_SUP = "┌----------------┐";
+  final private static String CORNICE_INF = "└----------------┘";
   final private static String VOCE_USCITA = "0\tEsci";
   final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
 
@@ -35,12 +36,12 @@ public class MyMenu
 		
   public void stampaMenuConUscita ()
   {
-	System.out.println(CORNICE);
+	System.out.println(CORNICE_SUP);
 	System.out.println(titolo);
-	System.out.println(CORNICE);
+	System.out.println(CORNICE_INF);
     for (int i=0; i<voci.length; i++)
 	 {
-	  System.out.println( (i+1) + "\t" + voci[i]);
+	  System.out.println( (i+1) +"⟼\t"+ voci[i]);
 	 }
     System.out.println();
 	System.out.println(VOCE_USCITA);
@@ -49,12 +50,12 @@ public class MyMenu
 
     public void stampaMenuSenzaUscita ()
     {
-        System.out.println(CORNICE);
-        System.out.println(titolo);
-        System.out.println(CORNICE);
+        System.out.println(CORNICE_SUP);
+        System.out.println("|"+"\t"+titolo+"\t"+" |");
+        System.out.println(CORNICE_INF);
         for (int i=0; i<voci.length; i++)
         {
-            System.out.println( (i+1) + "\t" + voci[i]);
+            System.out.println( (i+1) +"⟼\t" + voci[i]);
         }
         System.out.println();
     }

@@ -2,6 +2,11 @@ package it.unibs.pgArnaldo.tamagolem;
 
 public class Costanti {
 
+    //benvenuto
+    public static final String CORNICE_SUP = "┌———————————————————————————————————————————————————————————————————————————————┐";
+    public static final String BENVENUTO = "Benuto nel programma Tamagolem del gruppo Programmazione di fondamenti :)";
+    public static final  String CORNICE_INF = "└———————————————————————————————————————————————————————————————————————————————┘";
+
     //scelta difficolta
     public static final String DIFFICOLTA = "DIFFICOLTA'";
     public static final String ERRORE_DIFFICOLTA = "La difficoltà inserita non è corretta";
@@ -23,14 +28,14 @@ public class Costanti {
     public static final String INSERISCI_PIETRA = "\nScrivi l'elemento della pietra numero %d: ";
     public static final String ERRORE_PIETRA = "Questa pietra non è presente all'interno del tuo zaino :_(";
     public static final String NUMERO_TAMAGOLEM = ": hai a disposizione solamente %d tamagolem, gioca bene le tue pietre!";
-    public static final String MORTO = "\n༼ つ ◕_◕ ༽つ E' morto il tamagolem del ";
+    public static final String MORTO = "\n༼ つ ◕_◕ ༽つ ✞ E' morto il tamagolem del ";
     public static final String RIPRESA_BATTAGLIA = "\nLa battaglia riprende!";
     public static final String PAREGGIO = "\n\nPAREGGIO!!!!";
     public static final String VINCITA = "\n\nHa vinto il giocatore: ";
     //fine del programma
     public static final String STAMPA_MATRICE = "\nEccoti la matrice che ha stabilito le sorti della tua partita: ";
     public static final String FINITA = "\nLA PARTITA E' FINITA!";
-    public static final String END = "Fine del programma ( ^_^)";
+    public static final String END = "Fine del programma ( ^_^) ♥";
     public static final String RIVINCITA = "Volete fare una rivincita(rispondi si o no)? ";
     public static final String AVVIO_RIVINCITA = "\n\nLa rivincita è iniziata!! Giocate bene le vostre pietre :)";
     public static final String RISPOSTA_ERRATA = "La risposta inserita non è corretta ";

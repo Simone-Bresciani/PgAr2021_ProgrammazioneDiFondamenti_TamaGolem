@@ -25,9 +25,7 @@ public class Squadra
 
 
     //get
-    public ArrayList<Tamagolem> getLista_tamagolem() {
-        return lista_tamagolem;
-    }
+    public ArrayList<Tamagolem> getLista_tamagolem() { return lista_tamagolem; }
 
     /**
      * <h3>Metodo per comunicare la lista pietre in modo più leggibile per l'utente<br>
