@@ -192,7 +192,7 @@ public class Main {
      * <h3>metodo che crea l'oggetto tamagolem che inizializiamo con un array di pietre inizialmente nulle</h3>
      * @param numero_pietre_per_golem rappresenta il numero della tipologia di pietre a disposizione per un tamagolem
      * @param vita_inziale rappresenta
-     * @return
+     * @return il tamagolem creato
      */
     private static Tamagolem creaTamagolem(int numero_pietre_per_golem, int vita_inziale){
         //creo un arraylist di pietre
@@ -240,7 +240,7 @@ public class Main {
                 //fa reinserire la pietra, visto che aveva sbagliato
                 System.out.printf(Costanti.INSERISCI_PIETRA, i+1);
                 lettura = InputDati.leggiStringaNonVuota("");
-            };
+            }
             //imposto all'i-esimo elemento delle pietre disponibili del PRIMO tamagolem della squadra
             //lo imposto sempre al primo perchè quando un tamagolem viene eliminato si rimuove quello in prima posizione
             squadra.getLista_tamagolem().get(0).getPietre_utilizzate().set(i, lettura);
