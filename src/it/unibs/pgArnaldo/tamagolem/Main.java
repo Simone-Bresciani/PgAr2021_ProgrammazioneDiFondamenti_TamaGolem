@@ -114,7 +114,7 @@ public class Main {
             System.out.println(Costanti.FINITA);
             //alla fine dello scontro stampa la matrice
             System.out.println(Costanti.STAMPA_MATRICE);
-            equilibrio.stampaMatriceEquilibrio();
+            stampaMatriceEquilibrio(equilibrio.getMat(), numero_elementi);
             //chideo se vogliono fare la rivincita
             rivincita = seRivincita(InputDati.leggiStringaNonVuota(Costanti.RIVINCITA));
             while (rivincita == 3){
@@ -289,8 +289,23 @@ public class Main {
 
     private static void benvenuto(){
         System.out.println(Costanti.CORNICE_SUP);
-        System.out.printf("|\t"+Costanti.BENVENUTO+" \t|\n");
+        System.out.printf("|\t"+Costanti.BENVENUTO+"\t|\n");
         System.out.println(Costanti.CORNICE_INF);
+    }
+
+    /**
+     * <h3>Metodo per la stampa della matrice dell'equilibrio a fine partita</h3>
+     * @param mat rappresenta la matrice delle adiacenze da stampare
+     * @param numero_elementi ovvero il numero delle tipologie di pietre
+     */
+    private static void stampaMatriceEquilibrio(int[][] mat, int numero_elementi) {
+        for (int a=0; a<numero_elementi; a++){
+            for (int b=0; b<numero_elementi; b++){
+                if (mat[a][b] < 0) System.out.printf("[" + mat[a][b] + "]" + " ");
+                else System.out.printf("[ " + mat[a][b] + "]" + " ");
+            }
+            System.out.print("\n");
+        }System.out.print("\n");
     }
 }
 

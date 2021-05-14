@@ -127,16 +127,4 @@ public class Equilibrio
         return mat;
     }
 
-    /**
-     * <h3>Metodo per la stampa della matrice dell'equilibrio a fine partita</h3>
-     */
-    public void stampaMatriceEquilibrio() {
-        for (int a=0; a<n; a++){
-            for (int b=0; b<n; b++){
-                if (mat[a][b] < 0) System.out.printf("[" + mat[a][b] + "]" + " ");
-                else System.out.printf("[ " + mat[a][b] + "]" + " ");
-            }
-            System.out.print("\n");
-        }System.out.print("\n");
-    }
 }
