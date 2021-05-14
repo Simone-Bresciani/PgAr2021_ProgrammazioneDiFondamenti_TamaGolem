@@ -9,8 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int rivincita = 0; // variabile per far ripartire da capo lo scontro in caso si voglia rigiocare
+        int rivincita = 2; // variabile per far ripartire da capo lo scontro in caso si voglia rigiocare
         do{
+            //se la variabile rivincita è =1 allora l'utente ha deciso di avere una rivincita, quindi comunico un messagio per avvisarlo dell'inzio
+            if(rivincita == 1) System.out.println(Costanti.AVVIO_RIVINCITA);
             //creo una lista con delle associazioni tra un indice e il nome degli elementi
             //ne creo 9, poi in base alla difficoltà scelta, ne utilizzerò o tutte o una parte di esse
             Corrispondenze corrispondenze = new Corrispondenze();
@@ -105,7 +107,11 @@ public class Main {
             System.out.println(Costanti.STAMPA_MATRICE);
             equilibrio.stampaMatriceEquilibrio();
             //chideo se vogliono fare la rivincita
-            rivincita = InputDati.leggiIntero(Costanti.RIVINCITA);
+            rivincita = seRivincita(InputDati.leggiStringaNonVuota(Costanti.RIVINCITA));
+            while (rivincita == 3){
+                System.out.println(Costanti.RISPOSTA_ERRATA);
+                rivincita = seRivincita(InputDati.leggiStringaNonVuota(Costanti.RIVINCITA));
+            }
             //uscirà dallo scontro quando vede che la partita è conclusa
         }while(rivincita == 1);
         System.out.println(Costanti.END);
@@ -259,5 +265,15 @@ public class Main {
         String invio = reader.nextLine();
     }
 
+    /**
+     * <h3>Metodo che controlla la scelta dell'utente riguardo la possibilità di avere una rivincita</h3>
+     * @param risposta ovvero la risposta inserita dall'utente
+     * @return un intero che rappresenta la scelta dell'utente 1-rivincita 2-niente rivincita 3-ha inserito una parola errata
+     */
+    public static int seRivincita(String risposta) {
+        if (risposta.equals("si") || risposta.equals("SI") || risposta.equals("Si")) return 1;
+        if (risposta.equals("no") || risposta.equals("NO") || risposta.equals("No")) return 2;
+        return 3;
+    }
 }
 
